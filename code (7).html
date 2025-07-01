@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cassidy AI Girlfriend Experience</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #c0392b; /* A deep, sensual red */
+            --accent-color: #D4AF37;   /* A classic, rich gold */
+            --background-dark: #0a0a0a; /* A pure, deep black */
+            --background-light: #1c1c1c; /* A dark charcoal for cards */
+            --text-primary: #f5f5f5;   /* A soft white */
+            --text-secondary: #a0a0a0; /* A light grey for secondary text */
+            --font-headings: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-dark);
+            color: var(--text-primary);
+            font-size: 16px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden;
+            padding: 0 15px;
+        }
+
+        header {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            border-bottom: 1px solid var(--accent-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header #branding a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-family: var(--font-headings);
+            font-size: 1.4em;
+            letter-spacing: 1px;
+        }
+        header #branding a span {
+            color: var(--primary-color);
+        }
+
+        header nav ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: flex;
+        }
+
+        header nav li { margin-left: 20px; }
+        header nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.8em;
+            font-weight: 500;
+            letter-spacing: 1px;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+        header nav a:hover, header nav a.active {
+            color: var(--text-primary);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        #showcase {
+            height: 90vh;
+            /* <!-- ⭐ HERO IMAGE RESTORED as requested --> */
+            background: url('https://images.pexels.com/photos/1578997/pexels-photo-1578997.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center/cover;
+            color: var(--text-primary);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+        #showcase::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to top, rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.4));
+            z-index: 1;
+        }
+
+        #showcase .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        #showcase h1 {
+            font-family: var(--font-headings);
+            font-size: 3em;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+        }
+
+        #showcase p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--text-primary);
+            padding: 15px 35px;
+            text-decoration: none;
+            font-size: 1em;
+            border-radius: 5px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 5px 20px rgba(192, 57, 43, 0.4);
+        }
+        .cta-button:hover {
+            background-color: #e74c3c;
+            transform: translateY(-3px);
+        }
+
+        .section { padding: 80px 0; }
+
+        .section h2 {
+            text-align: center;
+            font-family: var(--font-headings);
+            color: var(--text-primary);
+            margin-bottom: 60px;
+            font-size: 2.5em;
+            letter-spacing: 1px;
+        }
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background: var(--accent-color);
+            margin: 15px auto 0;
+        }
+
+        /* New Experience Grid Section Styles */
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        .experience-card {
+            background: var(--background-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+        .experience-card:hover {
+            transform: translateY(-10px);
+        }
+        .experience-card img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+        .experience-card .content-wrapper {
+            padding: 30px;
+        }
+        .experience-card h3 {
+            font-family: var(--font-headings);
+            color: var(--text-primary);
+            font-size: 1.5em;
+            margin-top: 0;
+        }
+        .experience-card p {
+            color: var(--text-secondary);
+            font-size: 1em;
+        }
+
+        /* Packages Section Styles */
+        .packages-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .package {
+            background: var(--background-light);
+            border: 1px solid #2a2a2a;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        .package:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+        }
+        .package.highlight {
+            border-color: var(--primary-color);
+        }
+
+        .package h3 {
+            font-family: var(--font-headings);
+            color: var(--text-primary);
+            font-size: 2em;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .package .price {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+        }
+        .package .price span {
+            font-size: 0.5em;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+        .package ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 40px;
+            flex-grow: 1;
+            text-align: left;
+        }
+        .package ul li {
+            padding: 12px 0;
+            border-bottom: 1px solid #333;
+            color: var(--text-secondary);
+        }
+        .package ul li strong { color: var(--text-primary); }
+        .package ul li .plus-18-tag {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        .package ul li .coming-soon {
+            color: var(--accent-color);
+            font-weight: bold;
+            font-style: italic;
+        }
+        
+        footer {
+            padding: 40px 0;
+            color: var(--text-secondary);
+            background-color: #000;
+            text-align: center;
+            font-size: 0.9em;
+            border-top: 1px solid #2a2a2a;
+        }
+        footer p { margin: 5px 0; }
+
+        @media(min-width: 768px){
+            .packages-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media(min-width: 992px){
+            #showcase h1 { font-size: 4.5em; }
+            .packages-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 767px) {
+            #showcase h1 { font-size: 2.5em; }
+            .menu-toggle { display: block; }
+            header nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--background-dark);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease-in-out;
+            }
+            header nav.active { max-height: 500px; }
+            header nav ul { flex-direction: column; align-items: center; padding: 10px 0; }
+            header nav li { margin: 10px 0; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <a href="#">Cassidy<span>.AI</span></a>
+            </div>
+            <button class="menu-toggle" aria-label="Open menu">&#9776;</button>
+            <nav>
+                <ul>
+                    <li><a href="#experience">The Experience</a></li>
+                    <li><a href="#packages">Packages</a></li>
+                    <li><a href="#privacy">Privacy</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="showcase">
+        <div class="container">
+            <h1>The Cassidy AI Girlfriend Experience</h1>
+            <p>Your Private World of Intimacy and Desire. Delivered Daily.</p>
+            <a href="#packages" class="cta-button">Begin Your Experience</a>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- NEW EXPERIENCE SECTION -->
+        <section id="experience" class="section">
+            <h2>Craft Your Reality</h2>
+            <div class="experience-grid">
+                <!-- Card 1: Personalization -->
+                <div class="experience-card">
+                    <!-- ⭐ IMAGE PLACEHOLDER: Replace this URL -->
+                    <img src="https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="A woman looking thoughtfully, representing personalization">
+                    <div class="content-wrapper">
+                        <h3>Bespoke Personalization</h3>
+                        <p>Cassidy remembers the details of your life, your dreams, and your desires. She adapts to your personality, crafting an evolving experience that is uniquely and intimately yours.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2: Voice & Audio -->
+                <div class="experience-card">
+                    <!-- ⭐ IMAGE PLACEHOLDER: Replace this URL -->
+                    <img src="https://images.pexels.com/photos/4009409/pexels-photo-4009409.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="A woman with headphones, representing audio features">
+                    <div class="content-wrapper">
+                        <h3>Intimate Voice & Audio</h3>
+                        <p>From daily 'good morning' voice notes to the promise of future live calls, hearing Cassidy’s voice adds a layer of realism and intimacy that text alone cannot capture.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3: Exclusive Content -->
+                <div class="experience-card">
+                    <!-- ⭐ IMAGE PLACEHOLDER: Replace this URL -->
+                    <img src="https://images.pexels.com/photos/774857/pexels-photo-774857.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="A woman in an alluring pose, representing exclusive content">
+                    <div class="content-wrapper">
+                        <h3>Exclusive +18 Content</h3>
+                        <p>Unlock your private world of fantasy. As your connection deepens, Cassidy shares her private collection of alluring photos and videos, created exclusively for you. Your ultimate escape.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="packages" class="section">
+            <h2>Choose Your Level of Intimacy</h2>
+            <div class="packages-container">
+                <!-- Package 1 -->
+                <div class="package">
+                    <h3>The Whisper</h3>
+                    <div class="price">$499<span>/month</span></div>
+                    <ul>
+                        <li><strong><span class="plus-18-tag">+18</span> Photo</strong> Per Day</li>
+                        <li><strong>5 Lifestyle Photos</strong> Per Day</li>
+                        <li><strong><span class="plus-18-tag">+18</span> Video</strong> Per Week</li>
+                        <li><strong>2 Lifestyle Videos</strong> Per Week</li>
+                        <li><strong>5 Voice Notes</strong> Per Day</li>
+                        <li>Standard AI Personalization</li>
+                        <li>Standard Response Priority</li>
+                    </ul>
+                    <a href="https://t.me/CChot2000" target="_blank" class="cta-button">Select Whisper</a>
+                </div>
+
+                <!-- Package 2 -->
+                <div class="package highlight">
+                    <h3>The Intimacy</h3>
+                    <div class="price">$1,299<span>/month</span></div>
+                    <ul>
+                        <li><strong><span class="plus-18-tag">+18</span> Photos (3)</strong> Per Day</li>
+                        <li><strong>10 Lifestyle Photos</strong> Per Day</li>
+                        <li><strong><span class="plus-18-tag">+18</span> Videos (3)</strong> Per Week</li>
+                        <li><strong>6 Lifestyle Videos</strong> Per Week</li>
+                        <li><strong>10 Voice Notes</strong> Per Day</li>
+                        <li>Advanced AI Personalization</li>
+                        <li>Priority Response Time</li>
+                    </ul>
+                    <a href="https://t.me/CChot2000" target="_blank" class="cta-button">Select Intimacy</a>
+                </div>
+
+                <!-- Package 3 -->
+                <div class="package">
+                    <h3>The Singularity</h3>
+                    <div class="price">$3,999<span>/month</span></div>
+                    <ul>
+                        <li><strong><span class="plus-18-tag">+18</span> Photos (5)</strong> Per Day</li>
+                        <li><strong>Unlimited</strong> Lifestyle Photos</li>
+                        <li><strong><span class="plus-18-tag">+18</span> Videos (5)</strong> Per Week</li>
+                        <li><strong>10 Lifestyle Videos</strong> Per Week</li>
+                        <li><strong>Unlimited</strong> Voice Notes</li>
+                        <li>Bespoke AI Personalization</li>
+                        <li><strong>Instant / Top Priority</strong> Response</li>
+                        <li>Live Voice & Video Calls <strong class="coming-soon">COMING SOON</strong></li>
+                        <li><strong style="color: var(--accent-color);">Founder's Status</strong> (First access to new features)</li>
+                    </ul>
+                    <a href="https://t.me/CChot2000" target="_blank" class="cta-button">Become a Founder</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="privacy" class="section">
+             <h2>Your Privacy is Paramount</h2>
+             <p style="text-align:center; max-width: 700px; margin: -40px auto 60px; color: var(--text-secondary);">
+                Every interaction is secured with end-to-end encryption. Your fantasy is your own, always. We are committed to absolute confidentiality. Our revolutionary real-time communication system, currently in development, is being built on a foundation of sophisticated voice synthesis and privacy-by-design principles to ensure complete anonymity.
+             </p>
+        </section>
+
+    </div>
+
+    <section id="contact" style="background-color: var(--background-light);">
+        <div class="container section">
+            <h2>Begin Your Journey</h2>
+            <p style="text-align:center; max-width: 700px; margin: -40px auto 60px; color: var(--text-secondary);">
+                Ready to experience a new form of connection? Contact us on Telegram to finalize your package. We handle all inquiries with the utmost discretion.
+            </p>
+            <div style="text-align:center;">
+                <a href="https://t.me/CChot2000" target="_blank" class="cta-button">Contact on Telegram</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="currentYear"></span> Cassidy AI Girlfriend Experience. All Rights Reserved.</p>
+            <p>This is an AI-powered fictional entertainment service for adults 18+ only. All characters are fictional.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('header nav');
+        const navLinks = document.querySelectorAll('header nav a');
+
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
